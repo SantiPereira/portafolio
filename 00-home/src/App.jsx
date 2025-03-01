@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import { useEffect } from 'react';
 
 //! Componente Tarjeta de Proyecto
 const TagLink = ({ title = "Proximamente...", link, port = "/imagenes/randal_o1.jpg" , key }) => {
@@ -33,6 +34,21 @@ const SocialLink = ({ href, imgSrc, altText }) => {
 
 // Componente Principal
 function App() {
+
+//! Funcion que sirve para ver en que archivo estamos en el nav 
+  useEffect(() => {
+    const navLinks = document.querySelectorAll("nav .derecha a");
+
+    navLinks.forEach((link) => {
+      if (link.href !== window.location.href) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
+      }
+    });
+  }, []);
+
+
   return (
     <main>
       {/* Barra de navegación */}
@@ -49,9 +65,9 @@ function App() {
             </div>
             <div className="nav-section derecha"> 
                 <a href="Index.html" className="ap home re">Home</a>
-                <a href={`${window.location.origin.replace(/:\d+$/, '')}:5175`} className="ap note re">Notas</a>
-                <a href="yo.html" className="ap you re">Sobre mí</a>
-                <a href="#" className="ap algo re">Random</a>
+                <a href='#' className="ap note re">Notas</a>
+                <a href='#' className="ap you re">Sobre mí</a>
+                <a href='#' className="ap algo re">Random</a>
             </div> 
         </div>
     </nav>
@@ -64,7 +80,7 @@ function App() {
           <section className="apartados"> 
             <TagLink /> {/* Uso de API */}
             <TagLink /> {/* Login y Reg*/}
-            <TagLink title="Juego Conecta4" href={`${window.location.origin.replace(/:\d+$/, '')}:5175`} />
+            <TagLink title="Juego Conecta4" link={`${window.location.origin.replace(/:\d+$/, '')}:5175`} />
             <TagLink />
             <TagLink />
             <TagLink />
@@ -125,23 +141,6 @@ function App() {
 }
 
 export default App;
-
-
-/* 
-  <a target="_blank" rel="noopener noreferrer" href="https://github.com/SantiPereira">
-              <img src="imagenes/logo_github.png" alt="Logo github" className="logos" />
-            </a>
-            <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/santiago-pereira-896a87272/">
-              <img src="imagenes/logo_linkedin.png" alt="Logo Linkedin" className="logos" />
-            </a>
-            <a target="_blank" rel="noopener noreferrer" href="https://wa.me/598961755">
-              <img src="imagenes/logo_whatsapp.png" alt="Logo Whatsapp" className="logos" />
-            </a>
-            <a target="_blank" rel="noopener noreferrer" href="mailto:santiagope.sp@gmail.com">
-              <img src="imagenes/logo_correo.png" alt="Logo Mail" className="logos" />
-            </a>
-
-*/
 
 
 
